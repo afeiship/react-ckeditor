@@ -13,7 +13,6 @@
   };
 
   static defaultProps = {
-    value: null,
     onChange: noop,
     imageUploadAdapter: noop
   };
