@@ -1,7 +1,20 @@
-$react-ckeditor-options:(
+$react-ckeditor-options: () !default;
 
-)!default;
+.react-ckeditor {
+}
 
-.react-ckeditor{
-  color:#000;
+.ck-reset {
+  line-height: 1.4;
+  ul,
+  ol,
+  li {
+    margin-left: 24px;
+  }
+  ul li {
+    list-style-type: circle;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
 }
