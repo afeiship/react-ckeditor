@@ -19,7 +19,6 @@ export default class extends Component {
   };
 
   static defaultProps = {
-    value: null,
     onChange: noop,
     imageUploadAdapter: noop
   };
