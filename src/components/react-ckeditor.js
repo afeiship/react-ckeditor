@@ -5,10 +5,8 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import CkeditorImageUploadAdapter from 'ckeditor-image-upload-adapter';
 
 // https://ckeditor.com/docs/ckeditor5/latest/api/module_upload_filerepository-UploadAdapter.html
-
 
 export default class extends Component {
   /*===properties start===*/
@@ -35,21 +33,17 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    const { imageUploadAdapter, value, onChange } = this.props;
+    const { value } = this.props;
     ClassicEditor.create(this.root).then(editor => {
       this.editor = editor;
-      this.attacheEvents();
       this.html = value;
-      editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-        return new imageUploadAdapter(loader);
-      };
+      this.attacheEvents();
     });
   }
 
   onDataChange() {
     const { onChange } = this.props;
-    const editor = this.editor;
-    editor.model.document.on('change:data', (inEvent) => {
+    this.editor.model.document.on('change:data', (inEvent) => {
       onChange({
         target: {
           value: this.html
@@ -59,8 +53,7 @@ export default class extends Component {
   }
 
   onImageUpload() {
-    const editor = this.editor;
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    this.editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
       return new imageAdapter(loader);
     };
   }
