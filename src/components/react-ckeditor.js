@@ -54,9 +54,9 @@ export default class extends Component {
   }
 
   onImageUpload() {
-    const { adapterOptions } = this.props;
+    const { imageUploadAdapter, adapterOptions } = this.props;
     this.editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-      return new imageAdapter(loader, adapterOptions);
+      return new imageUploadAdapter(loader, adapterOptions);
     };
   }
 
@@ -66,7 +66,7 @@ export default class extends Component {
   }
 
   render() {
-    const { className, value, imageUploadAdapter, ...props } = this.props;
+    const { className, value, adapterOptions, imageUploadAdapter, ...props } = this.props;
     return (
       <div ref={root => this.root = root} className={classNames('react-ckeditor', className)} {...props} />
     );
