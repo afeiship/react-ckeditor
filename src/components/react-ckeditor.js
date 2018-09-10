@@ -14,7 +14,8 @@ export default class extends Component {
     className: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    imageUploadAdapter: PropTypes.func
+    imageUploadAdapter: PropTypes.func,
+    adapterOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -53,8 +54,9 @@ export default class extends Component {
   }
 
   onImageUpload() {
+    const { adapterOptions } = this.props;
     this.editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-      return new imageAdapter(loader);
+      return new imageAdapter(loader, adapterOptions);
     };
   }
 

@@ -8,7 +8,8 @@
     className: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    imageUploadAdapter: PropTypes.func
+    imageUploadAdapter: PropTypes.func,
+    adapterOptions: PropTypes.object,
   };
 
   static defaultProps = {
