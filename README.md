@@ -66,13 +66,6 @@ class App extends React.Component{
     value:'<h2>TITLTEasdlfjlsafd</h2><p>asdflkjsadf</p><p>&nbsp;</p><p>asdfjasdf</p><p>&nbsp;</p><p>asdfsadf</p>'
   };
 
-  constructor(props){
-    super(props);
-    window.demo = this;
-    window.refs = this.refs;
-    window.rc = this.refs.rc;
-  }
-
   _onChange = e =>{
     console.log(e.target.value);
   };
@@ -80,7 +73,10 @@ class App extends React.Component{
   render(){
     return (
       <div className="hello-react-ckeditor">
-        <ReactCkeditor value={this.state.value} onChange={this._onChange} imageUploadAdapter={UploadAdapter} ref='rc' />
+        <ReactCkeditor
+          value={this.state.value}
+          onChange={this._onChange}
+          imageUploadAdapter={UploadAdapter} ref='rc' />
       </div>
     );
   }
