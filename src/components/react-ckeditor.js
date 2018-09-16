@@ -43,7 +43,6 @@ export default class extends Component {
 
   componentWillReceiveProps(inProps) {
     const { value } = inProps;
-    const { onChange } = this.props;
     if (value !== this.html) {
       this.html = value;
     }
