@@ -1,2 +1,2 @@
-import ReactCkeditor from 'components/react-ckeditor';
+import ReactCkeditor from './components';
 export default ReactCkeditor;

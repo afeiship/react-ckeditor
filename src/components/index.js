@@ -2,27 +2,42 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import noop from 'noop';
+import noop from '@feizheng/noop';
 import objectAssign from 'object-assign';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-// https://ckeditor.com/docs/ckeditor5/latest/api/module_upload_filerepository-UploadAdapter.html
+const CLASS_NAME = 'react-ckeditor';
 
-export default class extends Component {
-  /*===properties start===*/
+export default class ReactCkeditor extends Component {
+  static displayName = CLASS_NAME;
+  static version = '__VERSION__';
   static propTypes = {
+    /**
+     * The extended className for component.
+     */
     className: PropTypes.string,
+    /**
+     * Default value.
+     */
     value: PropTypes.string,
+    /**
+     * The change handler.
+     */
     onChange: PropTypes.func,
+    /**
+     * The image upload adapter.
+     */
     imageUploadAdapter: PropTypes.func,
-    adapterOptions: PropTypes.object,
+    /**
+     * The adpater options.
+     */
+    adapterOptions: PropTypes.object
   };
 
   static defaultProps = {
     onChange: noop,
     imageUploadAdapter: noop
   };
-  /*===properties end===*/
 
   get html() {
     return this.editor ? this.editor.data.get() : null;
@@ -31,21 +46,21 @@ export default class extends Component {
   set html(inValue) {
     this.editor && this.editor.data.set(inValue);
   }
-
   componentDidMount() {
     const { value } = this.props;
-    ClassicEditor.create(this.root).then(editor => {
+    ClassicEditor.create(this.root).then((editor) => {
       this.editor = editor;
       this.html = value;
       this.attacheEvents();
     });
   }
 
-  componentWillReceiveProps(inProps) {
+  shouldComponentUpdate(inProps) {
     const { value } = inProps;
     if (value !== this.html) {
       this.html = value;
     }
+    return true;
   }
 
   onDataChange() {
@@ -55,13 +70,15 @@ export default class extends Component {
         target: {
           value: this.html
         }
-      })
+      });
     });
   }
 
   onImageUpload() {
     const { imageUploadAdapter, adapterOptions } = this.props;
-    this.editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    this.editor.plugins.get('FileRepository').createUploadAdapter = (
+      loader
+    ) => {
       return new imageUploadAdapter(loader, adapterOptions);
     };
   }
@@ -72,9 +89,21 @@ export default class extends Component {
   }
 
   render() {
-    const { className, value, adapterOptions, imageUploadAdapter, ...props } = this.props;
+    const {
+      className,
+      value,
+      adapterOptions,
+      imageUploadAdapter,
+      ...props
+    } = this.props;
+
     return (
-      <div ref={root => this.root = root} className={classNames('react-ckeditor', className)} {...props} />
+      <div
+        ref={(root) => (this.root = root)}
+        data-component={CLASS_NAME}
+        className={classNames(CLASS_NAME, className)}
+        {...props}
+      />
     );
   }
 }

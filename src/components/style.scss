@@ -1,20 +1,24 @@
 $react-ckeditor-options: () !default;
 
 .react-ckeditor {
-}
-
-.ck-reset {
-  line-height: 1.4;
-  ul,
-  ol,
-  li {
-    margin-left: 24px;
-  }
-  ul li {
-    list-style-type: circle;
+  color: #000;
+  border: 4px dashed #ccc;
+  padding: 20px;
+  user-select: none;
+  &:hover {
+    border-color: #ddd;
+    background: #f3f3f3;
   }
 
-  ol li {
-    list-style-type: decimal;
+  p {
+    margin-bottom: 10px;
+  }
+
+  .icon-play {
+    padding: 10px;
+    min-width: 120px;
+    &:focus {
+      outline: none;
+    }
   }
 }
