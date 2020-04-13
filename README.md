@@ -12,13 +12,13 @@ npm update @feizheng/react-ckeditor
 ```
 
 ## properties
-| Name               | Type   | Default | Description                           |
-| ------------------ | ------ | ------- | ------------------------------------- |
-| className          | string | -       | The extended className for component. |
-| value              | string | -       | Default value.                        |
-| onChange           | func   | noop    | The change handler.                   |
-| imageUploadAdapter | func   | noop    | The image upload adapter.             |
-| adapterOptions     | object | -       | The adpater options.                  |
+| Name               | Type   | Required | Default | Description                           |
+| ------------------ | ------ | -------- | ------- | ------------------------------------- |
+| className          | string | false    | -       | The extended className for component. |
+| value              | string | false    | -       | Default value.                        |
+| onChange           | func   | false    | noop    | The change handler.                   |
+| imageUploadAdapter | func   | false    | noop    | The image upload adapter.             |
+| adapterOptions     | object | false    | -       | The adpater options.                  |
 
 
 ## usage
@@ -54,8 +54,20 @@ npm update @feizheng/react-ckeditor
 
   class App extends React.Component {
     state = {
-      value:
-        '<h2>TITLTEasdlfjlsafd</h2><p>asdflkjsadf</p><p>&nbsp;</p><p>asdfjasdf</p><p>&nbsp;</p><p>asdfsadf</p>'
+      value: `
+        <h2>TITLTEasdlfjlsafd</h2>
+        <blockquote>
+          <p>asdflkjsadf</p>
+          <p>asdfjasdf</p>
+          <p>asdfsadf</p>
+        </blockquote>
+        <ul>
+          <li>item1</li>
+          <li>item2</li>
+          <li>item3</li>
+          <li>item4</li>
+        </ul>
+      `
     };
 
     _onChange = (e) => {

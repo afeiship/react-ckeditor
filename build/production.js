@@ -1,4 +1,4 @@
-import baseConfig from '.';
+import baseConfig from './base';
 import merge from 'webpack-merge';
 import {
   configs,
@@ -14,9 +14,9 @@ export default merge(baseConfig, {
   output: outputs.build({
     library: 'ReactCkeditor'
   }),
-  externals: externals.base({
-    '@feizheng/noop': '@feizheng/noop',
-    '@ckeditor/ckeditor5-build-classic': '@ckeditor/ckeditor5-build-classic'
-  }),
-  plugins: [plugins.clean(), plugins.copyStyles()]
+  externals: externals.node(),
+  plugins: [
+    plugins.clean(),
+    plugins.copyStyles()
+  ]
 });

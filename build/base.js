@@ -17,5 +17,8 @@ export default {
   module: {
     rules: [loaders.babel(), loaders.image(), loaders.sass(), loaders.version()]
   },
-  plugins: [plugins.minCssExtract()]
+  plugins: [
+    plugins.progressBar(),
+    plugins.minCssExtract()
+  ]
 };
