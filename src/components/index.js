@@ -46,6 +46,7 @@ export default class ReactCkeditor extends Component {
   set html(inValue) {
     this.editor && this.editor.data.set(inValue);
   }
+
   componentDidMount() {
     const { value } = this.props;
     ClassicEditor.create(this.root).then((editor) => {

@@ -21,8 +21,20 @@ class UploadAdapter {
 
 class App extends React.Component {
   state = {
-    value:
-      '<h2>TITLTEasdlfjlsafd</h2><p>asdflkjsadf</p><p>&nbsp;</p><p>asdfjasdf</p><p>&nbsp;</p><p>asdfsadf</p>'
+    value: `
+      <h2>TITLTEasdlfjlsafd</h2>
+      <blockquote>
+        <p>asdflkjsadf</p>
+        <p>asdfjasdf</p>
+        <p>asdfsadf</p>
+      </blockquote>
+      <ul>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+      </ul>
+    `
   };
 
   _onChange = (e) => {
