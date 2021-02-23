@@ -1,6 +1,7 @@
-import ReactCkeditor from '../src/main';
-import ReactDOM from 'react-dom';
+import ReactDemokit from '@jswork/react-demokit';
 import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactCkeditor from '../src/main';
 import './assets/style.scss';
 
 class UploadAdapter {
@@ -37,19 +38,21 @@ class App extends React.Component {
     `
   };
 
-  _onChange = (e) => {
+  handleChange = (e) => {
     console.log(e.target.value);
   };
 
   render() {
     return (
-      <div className="app-container">
+      <ReactDemokit
+        className="p-3 app-container"
+        url="https://github.com/afeiship/react-ckeditor">
         <ReactCkeditor
           value={this.state.value}
-          onChange={this._onChange}
+          onChange={this.handleChange}
           imageUploadAdapter={UploadAdapter}
         />
-      </div>
+      </ReactDemokit>
     );
   }
 }
