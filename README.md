@@ -12,11 +12,13 @@ npm install -S @jswork/react-ckeditor
 ```
 
 ## properties
-| Name      | Type   | Required | Default | Description                           |
-| --------- | ------ | -------- | ------- | ------------------------------------- |
-| className | string | false    | -       | The extended className for component. |
-| value     | object | false    | null    | The changed value.                    |
-| onChange  | func   | false    | noop    | The change handler.                   |
+| Name               | Type   | Required | Default | Description                           |
+| ------------------ | ------ | -------- | ------- | ------------------------------------- |
+| className          | string | false    | -       | The extended className for component. |
+| value              | string | false    | -       | Default value.                        |
+| onChange           | func   | false    | noop    | The change handler.                   |
+| imageUploadAdapter | func   | false    | noop    | The image upload adapter.             |
+| adapterOptions     | object | false    | -       | The adpater options.                  |
 
 
 ## usage
@@ -38,14 +40,54 @@ npm install -S @jswork/react-ckeditor
   import ReactCkeditor from '@jswork/react-ckeditor';
   import './assets/style.scss';
 
+  class UploadAdapter {
+    constructor(inLoader, inOptions) {
+      this.loader = inLoader;
+      this.options = inOptions;
+    }
+
+    upload() {
+      return new Promise((resolve) => {
+        resolve({
+          default:
+            'https://tva1.sinaimg.cn/large/0082zybpgy1gbzotavk93j30a204cwfm.jpg'
+        });
+      });
+    }
+  }
+
   class App extends React.Component {
+    state = {
+      value: `
+        <h2>TITLTEasdlfjlsafd</h2>
+        <blockquote>
+          <p>asdflkjsadf</p>
+          <p>asdfjasdf</p>
+          <p>asdfsadf</p>
+        </blockquote>
+        <ul>
+          <li>item1</li>
+          <li>item2</li>
+          <li>item3</li>
+          <li>item4</li>
+        </ul>
+      `
+    };
+
+    handleChange = (e) => {
+      console.log(e.target.value);
+    };
+
     render() {
       return (
         <ReactDemokit
           className="p-3 app-container"
           url="https://github.com/afeiship/react-ckeditor">
-          <ReactCkeditor className="mb-5 has-text-white" />
-          <button className="button is-primary is-fullwidth">Start~</button>
+          <ReactCkeditor
+            value={this.state.value}
+            onChange={this.handleChange}
+            imageUploadAdapter={UploadAdapter}
+          />
         </ReactDemokit>
       );
     }
