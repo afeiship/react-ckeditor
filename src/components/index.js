@@ -35,6 +35,7 @@ export default class ReactCkeditor extends Component {
   };
 
   static defaultProps = {
+    value: '',
     onChange: noop,
     imageUploadAdapter: noop
   };

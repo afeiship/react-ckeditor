@@ -11,6 +11,7 @@ class UploadAdapter {
   }
 
   upload() {
+    // this.loader.file.then(console.log)
     return new Promise((resolve) => {
       resolve({
         default:
