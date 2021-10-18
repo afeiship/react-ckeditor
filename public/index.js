@@ -2,6 +2,8 @@ import ReactDemokit from '@jswork/react-demokit';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactCkeditor from '../src/main';
+import WeiboCkeditorUploadAdpater from '@jswork/weibo-ckeditor-upload-adpater';
+
 import './assets/style.scss';
 
 class UploadAdapter {
@@ -11,6 +13,7 @@ class UploadAdapter {
   }
 
   upload() {
+    // console.log(this.loader);
     // this.loader.file.then(console.log)
     return new Promise((resolve) => {
       resolve({
@@ -51,7 +54,7 @@ class App extends React.Component {
         <ReactCkeditor
           value={this.state.value}
           onChange={this.handleChange}
-          imageUploadAdapter={UploadAdapter}
+          imageUploadAdapter={WeiboCkeditorUploadAdpater}
         />
       </ReactDemokit>
     );

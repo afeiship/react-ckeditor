@@ -56,6 +56,7 @@
     "@jswork/react-demokit": "^1.0.2",
     "@jswork/react-markdown-props": "^1.0.1",
     "@jswork/webpack-lib-kits": "^1.0.2",
+    "@jswork/weibo-ckeditor-upload-adpater": "^1.0.8",
     "@testing-library/react": "^11.0.4",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
