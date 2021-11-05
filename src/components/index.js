@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from '@jswork/noop';
-import objectAssign from 'object-assign';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CLASS_NAME = 'react-ckeditor';
@@ -67,7 +65,7 @@ export default class ReactCkeditor extends Component {
 
   onDataChange() {
     const { onChange } = this.props;
-    this.editor.model.document.on('change:data', (inEvent) => {
+    this.editor.model.document.on('change:data', () => {
       onChange({
         target: {
           value: this.html
@@ -78,11 +76,9 @@ export default class ReactCkeditor extends Component {
 
   onImageUpload() {
     const { imageUploadAdapter, adapterOptions } = this.props;
-    this.editor.plugins.get('FileRepository').createUploadAdapter = (
-      loader
-    ) => {
-      return new imageUploadAdapter(loader, adapterOptions);
-    };
+    const plugins = this.editor.plugins;
+    const fileRepo = plugins.get('FileRepository');
+    fileRepo.createUploadAdapter = (loader) => new imageUploadAdapter(loader, adapterOptions);
   }
 
   attacheEvents() {
