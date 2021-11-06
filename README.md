@@ -17,6 +17,7 @@ npm install -S @jswork/react-ckeditor
 | className          | string | false    | -       | The extended className for component. |
 | value              | string | false    | ''      | Default value.                        |
 | onChange           | func   | false    | noop    | The change handler.                   |
+| options            | any    | false    | {}      | Editor options.                       |
 | imageUploadAdapter | func   | false    | noop    | The image upload adapter.             |
 | adapterOptions     | object | false    | -       | The adpater options.                  |
 
@@ -60,6 +61,7 @@ npm install -S @jswork/react-ckeditor
     }
   }
 
+  // https://ckeditor.com/docs/ckeditor5/latest/api/module_code-block_codeblock-CodeBlockConfig.html#member-languages
   class App extends React.Component {
     state = {
       value: `
@@ -91,6 +93,23 @@ npm install -S @jswork/react-ckeditor
             value={this.state.value}
             onChange={this.handleChange}
             imageUploadAdapter={WeiboCkeditorUploadAdpater}
+            options={{
+              codeBlock: {
+                languages: [
+                  { language: 'plaintext', label: 'Plain text' }, // The default language.
+                  { language: 'css', label: 'CSS' },
+                  { language: 'html', label: 'HTML' },
+                  { language: 'java', label: 'Java' },
+                  { language: 'kotlin', label: 'Kotlin' },
+                  { language: 'javascript', label: 'JavaScript' },
+                  { language: 'php', label: 'PHP' },
+                  { language: 'python', label: 'Python' },
+                  { language: 'ruby', label: 'Ruby' },
+                  { language: 'typescript', label: 'TypeScript' },
+                  { language: 'xml', label: 'XML' }
+                ]
+              }
+            }}
           />
         </ReactDemokit>
       );
