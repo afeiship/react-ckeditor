@@ -3,10 +3,15 @@
 @import "~@jswork/react-sw-update-tips/dist/style.scss";
 @import "~@jswork/react-demokit/dist/style.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .app-container {
   .is-body {
-    width: 50%;
-    min-width: 320px;;
+    width: 90%;
+    min-width: 320px;
     margin: 0 auto;
   }
 }

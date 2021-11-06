@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from '@jswork/noop';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@jswork/ckeditor5-build-classic';
 
 const CLASS_NAME = 'react-ckeditor';
 
