@@ -23,6 +23,10 @@ export default class ReactCkeditor extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Editor options.
+     */
+    options: PropTypes.any,
+    /**
      * The image upload adapter.
      */
     imageUploadAdapter: PropTypes.func,
@@ -34,6 +38,7 @@ export default class ReactCkeditor extends Component {
 
   static defaultProps = {
     value: '',
+    options: {},
     onChange: noop,
     imageUploadAdapter: noop
   };
@@ -47,8 +52,8 @@ export default class ReactCkeditor extends Component {
   }
 
   componentDidMount() {
-    const { value } = this.props;
-    ClassicEditor.create(this.root).then((editor) => {
+    const { value, options } = this.props;
+    ClassicEditor.create(this.root, options).then((editor) => {
       this.editor = editor;
       this.html = value;
       this.attacheEvents();
@@ -78,7 +83,8 @@ export default class ReactCkeditor extends Component {
     const { imageUploadAdapter, adapterOptions } = this.props;
     const plugins = this.editor.plugins;
     const fileRepo = plugins.get('FileRepository');
-    fileRepo.createUploadAdapter = (loader) => new imageUploadAdapter(loader, adapterOptions);
+    fileRepo.createUploadAdapter = (loader) =>
+      new imageUploadAdapter(loader, adapterOptions);
   }
 
   attacheEvents() {
@@ -90,6 +96,7 @@ export default class ReactCkeditor extends Component {
     const {
       className,
       value,
+      options,
       adapterOptions,
       imageUploadAdapter,
       ...props

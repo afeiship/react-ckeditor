@@ -24,6 +24,7 @@ class UploadAdapter {
   }
 }
 
+// https://ckeditor.com/docs/ckeditor5/latest/api/module_code-block_codeblock-CodeBlockConfig.html#member-languages
 class App extends React.Component {
   state = {
     value: `
@@ -55,6 +56,22 @@ class App extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           imageUploadAdapter={WeiboCkeditorUploadAdpater}
+          options={{
+            codeBlock: {
+              languages: [
+                { language: 'plaintext', label: 'Plain text' }, // The default language.
+                { language: 'css', label: 'CSS' },
+                { language: 'html', label: 'HTML' },
+                { language: 'java', label: 'Java' },
+                { language: 'javascript', label: 'JavaScript' },
+                { language: 'php', label: 'PHP' },
+                { language: 'python', label: 'Python' },
+                { language: 'ruby', label: 'Ruby' },
+                { language: 'typescript', label: 'TypeScript' },
+                { language: 'xml', label: 'XML' }
+              ]
+            }
+          }}
         />
       </ReactDemokit>
     );
