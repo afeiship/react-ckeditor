@@ -15,7 +15,7 @@ npm install -S @jswork/react-ckeditor
 | Name               | Type   | Required | Default | Description                           |
 | ------------------ | ------ | -------- | ------- | ------------------------------------- |
 | className          | string | false    | -       | The extended className for component. |
-| value              | string | false    | -       | Default value.                        |
+| value              | string | false    | ''      | Default value.                        |
 | onChange           | func   | false    | noop    | The change handler.                   |
 | imageUploadAdapter | func   | false    | noop    | The image upload adapter.             |
 | adapterOptions     | object | false    | -       | The adpater options.                  |
@@ -38,6 +38,8 @@ npm install -S @jswork/react-ckeditor
   import React from 'react';
   import ReactDOM from 'react-dom';
   import ReactCkeditor from '@jswork/react-ckeditor';
+  import WeiboCkeditorUploadAdpater from '@jswork/weibo-ckeditor-upload-adpater';
+
   import './assets/style.scss';
 
   class UploadAdapter {
@@ -47,6 +49,8 @@ npm install -S @jswork/react-ckeditor
     }
 
     upload() {
+      // console.log(this.loader);
+      // this.loader.file.then(console.log)
       return new Promise((resolve) => {
         resolve({
           default:
@@ -86,7 +90,7 @@ npm install -S @jswork/react-ckeditor
           <ReactCkeditor
             value={this.state.value}
             onChange={this.handleChange}
-            imageUploadAdapter={UploadAdapter}
+            imageUploadAdapter={WeiboCkeditorUploadAdpater}
           />
         </ReactDemokit>
       );
