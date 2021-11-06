@@ -55,6 +55,7 @@ export default class ReactCkeditor extends Component {
     const { value, options } = this.props;
     ClassicEditor.create(this.root, options).then((editor) => {
       this.editor = editor;
+      window.ss = this;
       this.html = value;
       this.attacheEvents();
     });

@@ -63,6 +63,7 @@ class App extends React.Component {
                 { language: 'css', label: 'CSS' },
                 { language: 'html', label: 'HTML' },
                 { language: 'java', label: 'Java' },
+                { language: 'kotlin', label: 'Kotlin' },
                 { language: 'javascript', label: 'JavaScript' },
                 { language: 'php', label: 'PHP' },
                 { language: 'python', label: 'Python' },
