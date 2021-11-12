@@ -84,7 +84,7 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "@jswork/ckeditor5-build-classic": "^1.0.0",
+    "@jswork/ckeditor5-build-classic": "^1.0.3",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
   },
