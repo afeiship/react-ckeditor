@@ -93,23 +93,6 @@ npm install -S @jswork/react-ckeditor
             value={this.state.value}
             onChange={this.handleChange}
             imageUploadAdapter={WeiboCkeditorUploadAdpater}
-            options={{
-              codeBlock: {
-                languages: [
-                  { language: 'plaintext', label: 'Plain text' }, // The default language.
-                  { language: 'css', label: 'CSS' },
-                  { language: 'html', label: 'HTML' },
-                  { language: 'java', label: 'Java' },
-                  { language: 'kotlin', label: 'Kotlin' },
-                  { language: 'javascript', label: 'JavaScript' },
-                  { language: 'php', label: 'PHP' },
-                  { language: 'python', label: 'Python' },
-                  { language: 'ruby', label: 'Ruby' },
-                  { language: 'typescript', label: 'TypeScript' },
-                  { language: 'xml', label: 'XML' }
-                ]
-              }
-            }}
           />
         </ReactDemokit>
       );
