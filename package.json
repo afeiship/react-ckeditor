@@ -1,6 +1,6 @@
 {
   "name": "@jswork/react-ckeditor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CKEditor component for react.",
   "main": "dist/index.js",
   "scripts": {
@@ -84,7 +84,7 @@
     "prop-types": "^15.7.2"
   },
   "dependencies": {
-    "@jswork/ckeditor5-build-classic": "^1.0.3",
+    "@jswork/ckeditor5-build-classic": "^1.0.5",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6"
   },

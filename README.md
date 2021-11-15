@@ -93,6 +93,18 @@ npm install -S @jswork/react-ckeditor
             value={this.state.value}
             onChange={this.handleChange}
             imageUploadAdapter={WeiboCkeditorUploadAdpater}
+            options={{
+              image: {
+                toolbar: [
+                  'imageTextAlternative',
+                  'toggleImageCaption',
+                  'imageStyle:inline',
+                  'imageStyle:block',
+                  'imageStyle:side',
+                  'linkImage'
+                ]
+              }
+            }}
           />
         </ReactDemokit>
       );
