@@ -11,17 +11,6 @@
 npm install -S @jswork/react-ckeditor
 ```
 
-## properties
-| Name               | Type   | Required | Default | Description                           |
-| ------------------ | ------ | -------- | ------- | ------------------------------------- |
-| className          | string | false    | -       | The extended className for component. |
-| value              | string | false    | ''      | Default value.                        |
-| onChange           | func   | false    | noop    | The change handler.                   |
-| options            | any    | false    | {}      | Editor options.                       |
-| imageUploadAdapter | func   | false    | noop    | The image upload adapter.             |
-| adapterOptions     | object | false    | -       | The adpater options.                  |
-
-
 ## usage
 1. import css
   ```scss
@@ -35,89 +24,27 @@ npm install -S @jswork/react-ckeditor
   ```
 2. import js
   ```js
-  import ReactDemokit from '@jswork/react-demokit';
   import React from 'react';
-  import ReactDOM from 'react-dom';
   import ReactCkeditor from '@jswork/react-ckeditor';
-  import WeiboCkeditorUploadAdpater from '@jswork/weibo-ckeditor-upload-adpater';
+  import styled from 'styled-components';
 
-  import './assets/style.scss';
+  const Container = styled.div`
+    width: 80%;
+    margin: 30px auto 0;
+  `;
 
-  class UploadAdapter {
-    constructor(inLoader, inOptions) {
-      this.loader = inLoader;
-      this.options = inOptions;
-    }
-
-    upload() {
-      // console.log(this.loader);
-      // this.loader.file.then(console.log)
-      return new Promise((resolve) => {
-        resolve({
-          default:
-            'https://tva1.sinaimg.cn/large/0082zybpgy1gbzotavk93j30a204cwfm.jpg'
-        });
-      });
-    }
-  }
-
-  // https://ckeditor.com/docs/ckeditor5/latest/api/module_code-block_codeblock-CodeBlockConfig.html#member-languages
-  class App extends React.Component {
-    state = {
-      value: `
-        <h2>TITLTEasdlfjlsafd</h2>
-        <blockquote>
-          <p>asdflkjsadf</p>
-          <p>asdfjasdf</p>
-          <p>asdfsadf</p>
-        </blockquote>
-        <ul>
-          <li>item1</li>
-          <li>item2</li>
-          <li>item3</li>
-          <li>item4</li>
-        </ul>
-      `
-    };
-
-    handleChange = (e) => {
-      console.log(e.target.value);
-    };
-
-    render() {
-      return (
-        <ReactDemokit
-          className="p-3 app-container"
-          url="https://github.com/afeiship/react-ckeditor">
-          <ReactCkeditor
-            value={this.state.value}
-            onChange={this.handleChange}
-            imageUploadAdapter={WeiboCkeditorUploadAdpater}
-            options={{
-              image: {
-                toolbar: [
-                  'imageTextAlternative',
-                  'toggleImageCaption',
-                  'imageStyle:inline',
-                  'imageStyle:block',
-                  'imageStyle:side',
-                  'linkImage'
-                ]
-              }
-            }}
-          />
-        </ReactDemokit>
-      );
-    }
-  }
-
-  ReactDOM.render(<App />, document.getElementById('app'));
+  export default (props: any) => {
+    return (
+      <Container>
+        <ReactCkeditor />
+      </Container>
+    );
+  };
 
   ```
 
-## documentation
+## preview
 - https://afeiship.github.io/react-ckeditor/
-
 
 ## license
 Code released under [the MIT license](https://github.com/afeiship/react-ckeditor/blob/master/LICENSE.txt).
