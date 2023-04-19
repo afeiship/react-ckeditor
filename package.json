@@ -1,7 +1,7 @@
 {
   "name": "@jswork/react-ckeditor",
   "homepage": "https://js.work",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "CKEditor component for react.",
   "license": "MIT",
   "main": "dist/index.js",
