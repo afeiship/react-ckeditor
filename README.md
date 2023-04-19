@@ -25,21 +25,54 @@ npm install -S @jswork/react-ckeditor
 2. import js
   ```js
   import React from 'react';
-  import ReactCkeditor from '@jswork/react-ckeditor';
-  import styled from 'styled-components';
+  import ReactCkeditor from '../../src/main';
+  import WeiboCkeditorUploadAdpater from '@jswork/weibo-ckeditor-upload-adpater';
 
-  const Container = styled.div`
-    width: 80%;
-    margin: 30px auto 0;
-  `;
+  // https://ckeditor.com/docs/ckeditor5/latest/api/module_code-block_codeblock-CodeBlockConfig.html#member-languages
+  export default class App extends React.Component {
+    state = {
+      value: `
+        <h2>TITLTEasdlfjlsafd</h2>
+        <blockquote>
+          <p>asdflkjsadf</p>
+          <p>asdfjasdf</p>
+          <p>asdfsadf</p>
+        </blockquote>
+        <ul>
+          <li>item1</li>
+          <li>item2</li>
+          <li>item3</li>
+          <li>item4</li>
+        </ul>
+      `
+    };
 
-  export default (props: any) => {
-    return (
-      <Container>
-        <ReactCkeditor />
-      </Container>
-    );
-  };
+    handleChange = (e) => {
+      console.log(e.target.value);
+    };
+
+    render() {
+      return (
+        <ReactCkeditor
+          value={this.state.value}
+          onChange={this.handleChange}
+          imageUploadAdapter={WeiboCkeditorUploadAdpater}
+          options={{
+            image: {
+              toolbar: [
+                'imageTextAlternative',
+                'toggleImageCaption',
+                'imageStyle:inline',
+                'imageStyle:block',
+                'imageStyle:side',
+                'linkImage'
+              ]
+            }
+          }}
+        />
+      );
+    }
+  }
 
   ```
 

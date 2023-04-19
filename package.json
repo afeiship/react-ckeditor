@@ -1,7 +1,7 @@
 {
   "name": "@jswork/react-ckeditor",
   "homepage": "https://js.work",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CKEditor component for react.",
   "license": "MIT",
   "main": "dist/index.js",
@@ -77,5 +77,11 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "keywords": [
+    "react",
+    "ckeditor",
+    "editor",
+    "rich-editor"
+  ]
 }

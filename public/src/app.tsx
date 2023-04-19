@@ -2,26 +2,6 @@ import React from 'react';
 import ReactCkeditor from '../../src/main';
 import WeiboCkeditorUploadAdpater from '@jswork/weibo-ckeditor-upload-adpater';
 
-class UploadAdapter {
-  private loader;
-  private options;
-
-  constructor(inLoader, inOptions) {
-    this.loader = inLoader;
-    this.options = inOptions;
-  }
-
-  upload() {
-    // console.log(this.loader);
-    // this.loader.file.then(console.log)
-    return new Promise((resolve) => {
-      resolve({
-        default: 'https://tva1.sinaimg.cn/large/0082zybpgy1gbzotavk93j30a204cwfm.jpg'
-      });
-    });
-  }
-}
-
 // https://ckeditor.com/docs/ckeditor5/latest/api/module_code-block_codeblock-CodeBlockConfig.html#member-languages
 export default class App extends React.Component {
   state = {
