@@ -71,7 +71,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps> {
   shouldComponentUpdate(inProps) {
     const { value } = inProps;
     if (value !== this.html) {
-      this.html = value;
+      this.html = value || '';
     }
     return true;
   }
