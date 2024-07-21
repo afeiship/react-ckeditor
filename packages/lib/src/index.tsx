@@ -53,7 +53,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   };
 
   private editor: any = null;
-  private root: HTMLDivElement | null;
+  private root: HTMLDivElement | null = null;
 
   state = {
     value: this.props.value || '',
