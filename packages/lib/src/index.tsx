@@ -112,7 +112,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   render() {
-    const { className, value, onChange, options, adapterOptions, imageUploadAdapter, ...props } =
+    const { className, value, onChange, editorOptions, adapterOptions, imageUploadAdapter, ...props } =
       this.props;
 
     return (
