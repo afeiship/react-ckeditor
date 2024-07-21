@@ -1,6 +1,6 @@
 {
   "name": "@jswork/react-ckeditor",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -36,5 +36,11 @@
   "dependencies": {
     "@jswork/ckeditor5-build-classic": "^1.0.14",
     "@jswork/noop": "^1.0.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "ckeditor",
+    "editor",
+    "rich-editor"
+  ]
 }
