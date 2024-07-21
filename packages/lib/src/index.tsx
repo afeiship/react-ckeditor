@@ -93,6 +93,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   onDataChange() {
     const { onChange } = this.props;
     this.editor.model.document.on('change:data', () => {
+      console.log('value changed: ', this.editorValue);
       this.setState({ value: this.editorValue });
       onChange?.({ target: { value: this.editorValue } });
     });

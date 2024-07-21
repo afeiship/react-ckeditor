@@ -18,9 +18,6 @@ npm install -S @jswork/react-ckeditor
 
   // or use sass
   @import "~@jswork/react-ckeditor/dist/style.scss";
-
-  // customize your styles:
-  $react-ckeditor-options: ()
   ```
 2. import js
   ```js
