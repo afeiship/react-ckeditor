@@ -68,11 +68,9 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   set editorValue(value) {
-    const { onChange } = this.props;
     if (this.editorValue === value) return;
     this.editor?.setData(value);
-    this.setState({ value });
-    onChange?.({ target: { value } });
+    this.handleChange(value);
   }
 
   componentDidMount() {
@@ -81,7 +79,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     ClassicEditor.create(this.root, { initialData: value, ...options }).then((editor) => {
       this.editor = editor;
       this.editorRoot.classList.add(classes);
-      this.onImageUpload();
+      this.attacheEvents();
     });
   }
 
@@ -92,15 +90,28 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     }
   }
 
-  componentWillUnmount() {
-    this.editor?.destroy();
+  onDataChange() {
+    this.editor.model.document.on('change:data', () => {
+      this.handleChange(this.editorValue);
+    });
   }
+
+  handleChange = (value) => {
+    const { onChange } = this.props;
+    this.setState({ value });
+    onChange?.({ target: { value } });
+  };
 
   onImageUpload() {
     const { imageUploadAdapter, adapterOptions } = this.props;
     const plugins = this.editor.plugins;
     const fileRepo = plugins.get('FileRepository');
     fileRepo.createUploadAdapter = (loader) => new imageUploadAdapter(loader, adapterOptions);
+  }
+
+  attacheEvents() {
+    this.onDataChange();
+    this.onImageUpload();
   }
 
   render() {
