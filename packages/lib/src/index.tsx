@@ -13,10 +13,6 @@ export type StandardEvent = {
 
 export type ReactCkeditorProps = {
   /**
-   * The extended className for component.
-   */
-  className?: string;
-  /**
    * Default value.
    */
   value?: string;
@@ -25,13 +21,13 @@ export type ReactCkeditorProps = {
    */
   onChange?: (event: StandardEvent) => void;
   /**
-   * The editor options.
-   */
-  options?: any;
-  /**
    * The image upload adapter.
    */
   imageUploadAdapter?: any;
+  /**
+   * The editor options.
+   */
+  editorOptions?: any;
   /**
    * The adapter options.
    */
@@ -74,9 +70,9 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   componentDidMount() {
-    const { options, value, className } = this.props;
+    const { editorOptions, value, className } = this.props;
     const classes = classNames(CLASS_NAME, className).split(' ');
-    ClassicEditor.create(this.root, { initialData: value, ...options }).then((editor) => {
+    ClassicEditor.create(this.root, { initialData: value, ...editorOptions }).then((editor) => {
       this.editor = editor;
       this.editorRoot.classList.add(...classes);
       this.onDataChange();
