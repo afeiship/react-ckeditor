@@ -32,12 +32,24 @@ npm install -S @jswork/react-ckeditor
   export default class App extends React.Component {
     state = {
       value: `
-        <h4>安装插件</h4><ol><li><code>eslint</code> 自带了</li><li><code>prettier</code> 需要安装</li></ol><figure class=\"image\"><img src=\"https://tva1.js.work/large/da432263ly1gxuxu9lzxej21ji0rmtem.jpg\"><figcaption>prettier 插件市场安装</figcaption></figure><h4>一般 <code>eslint</code> 使用 auto 即可</h4><figure class=\"image\"><img src=\"https://tva1.js.work/large/da432263ly1gxuxwgcdmoj21j80fetbk.jpg\"><figcaption>eslint 设置</figcaption></figure><h4><code>prettier</code> 可以添加一个格式化时执行</h4><figure class=\"image\"><img src=\"https://tva1.js.work/large/da432263ly1gxuxxauvqgj21ja0n2779.jpg\"><figcaption>设置格式化时使用 prettier</figcaption></figure><h4>各种 hit 提示去除</h4><blockquote><p>点击提示，右键，Hide all user viso…</p></blockquote><figure class=\"image\"><img src=\"https://tva1.js.work/large/da432263gy1hbgqgnzcwwj20vw0qqgoz.jpg\"></figure>
+        <h1>初始化内容</h1>
       `
     };
 
+    componentDidMount() {
+      setTimeout(() => {
+        this.setState({
+          value: `
+            <h4>安装插件</h4><ol><li><code>eslint</code> 自带了</li><li><code>prettier</code>需要安装</li></ol>设置格式化时使用 prettier</figcaption></figure><h4>各种 hit 提示去除</h4><blockquote><p>点击提示，右键，Hide all user viso…</p></blockquote>
+          `
+        });
+      }, 1000);
+    }
+
     handleChange = (e) => {
-      console.log(e.target.value);
+      const { value } = e.target;
+      console.log('✅ value: ', value);
+      this.setState({ value });
     };
 
     render() {

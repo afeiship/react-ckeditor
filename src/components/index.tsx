@@ -2,7 +2,6 @@ import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component, HTMLAttributes } from 'react';
 import ClassicEditor from '@jswork/ckeditor5-build-classic';
-// import { ReactCkeditorProps } from '../../dist/components';
 
 const CLASS_NAME = 'react-ckeditor';
 
@@ -111,7 +110,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   render() {
-    const { className, value, options, adapterOptions, imageUploadAdapter, ...props } = this.props;
+    const { className, value, onChange, options, adapterOptions, imageUploadAdapter, ...props } = this.props;
 
     return (
       <div
