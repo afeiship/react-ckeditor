@@ -78,7 +78,8 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     const classes = classNames(CLASS_NAME, className);
     ClassicEditor.create(this.root, { initialData: value, ...options }).then((editor) => {
       this.editor = editor;
-      this.editorRoot.classList.add(classes);
+      // todo: add class to dom element
+      classes.split(' ').forEach((cls) => this.editorRoot.classList.add(cls));
       this.attacheEvents();
     });
   }
