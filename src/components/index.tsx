@@ -83,9 +83,10 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   componentDidUpdate() {
-    const { value } = this.props;
+    const { value, onChange } = this.props;
     if (value !== this.state.value) {
       this.editorValue = value;
+      onChange?.({ target: { value: value as string } });
     }
   }
 
