@@ -2,6 +2,7 @@ import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component, HTMLAttributes } from 'react';
 import ClassicEditor from '@jswork/ckeditor5-build-classic';
+// import { ReactCkeditorProps } from '../../dist/components';
 
 const CLASS_NAME = 'react-ckeditor';
 
@@ -33,12 +34,16 @@ export type ReactCkeditorProps = {
    */
   imageUploadAdapter?: any;
   /**
-   * The adpater options.
+   * The adapter options.
    */
   adapterOptions?: any;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default class ReactCkeditor extends Component<ReactCkeditorProps> {
+interface ReactCkeditorState {
+  value: string;
+}
+
+export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCkeditorState> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
@@ -48,38 +53,48 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps> {
     imageUploadAdapter: noop
   };
 
-  private editor;
-  private root;
+  private editor: any = null;
+  private root: HTMLDivElement | null;
 
-  get html() {
-    return this.editor ? this.editor.getData() : null;
+  state = {
+    value: this.props.value || ''
+  };
+
+  get editorRoot() {
+    return this.editor?.ui.view.element;
   }
 
-  set html(inValue) {
-    this.editor && this.editor.setData(inValue);
+  get editorValue() {
+    return this.editor?.getData() || '';
+  }
+
+  set editorValue(value) {
+    this.editor?.setData(value);
+    this.setState({ value });
   }
 
   componentDidMount() {
-    const { value, options } = this.props;
-    ClassicEditor.create(this.root, options).then((editor) => {
+    const { options, value, className } = this.props;
+    const classes = classNames(CLASS_NAME, className);
+    ClassicEditor.create(this.root, { initialData: value, ...options }).then((editor) => {
       this.editor = editor;
-      this.html = value;
+      this.editorRoot.classList.add(classes);
       this.attacheEvents();
     });
   }
 
-  shouldComponentUpdate(inProps) {
-    const { value } = inProps;
-    if (value !== this.html) {
-      this.html = value || '';
+  componentDidUpdate() {
+    const { value } = this.props;
+    if (value !== this.state.value) {
+      this.editorValue = value;
     }
-    return true;
   }
 
   onDataChange() {
     const { onChange } = this.props;
     this.editor.model.document.on('change:data', () => {
-      onChange!({ target: { value: this.html } });
+      this.setState({ value: this.editorValue });
+      onChange?.({ target: { value: this.editorValue } });
     });
   }
 
@@ -102,7 +117,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps> {
       <div
         ref={(root) => (this.root = root)}
         data-component={CLASS_NAME}
-        className={classNames(CLASS_NAME, className)}
+        className={classNames(`${CLASS_NAME}__root`)}
         {...props}
       />
     );
