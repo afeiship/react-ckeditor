@@ -90,6 +90,10 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     }
   }
 
+  componentWillUnmount() {
+    this.editor?.destroy();
+  }
+
   onDataChange() {
     this.editor.model.document.on('change:data', () => {
       this.handleChange(this.editorValue);
