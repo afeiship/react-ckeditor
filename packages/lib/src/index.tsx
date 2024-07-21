@@ -63,31 +63,31 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     return this.editor?.ui.view.element;
   }
 
-  get editorValue() {
+  get rawValue() {
     return this.editor?.getData() || '';
   }
 
-  set editorValue(value) {
-    if (this.editorValue === value) return;
+  set rawValue(value) {
+    if (this.rawValue === value) return;
     this.editor?.setData(value);
     this.handleChange(value);
   }
 
   componentDidMount() {
     const { options, value, className } = this.props;
-    const classes = classNames(CLASS_NAME, className);
+    const classes = classNames(CLASS_NAME, className).split(' ');
     ClassicEditor.create(this.root, { initialData: value, ...options }).then((editor) => {
       this.editor = editor;
-      // todo: add class to dom element
-      classes.split(' ').forEach((cls) => this.editorRoot.classList.add(cls));
-      this.attacheEvents();
+      this.editorRoot.classList.add(...classes);
+      this.onDataChange();
+      this.onImageUpload();
     });
   }
 
   componentDidUpdate(previosProps: ReactCkeditorProps) {
     const { value } = this.props;
     if (value && value !== previosProps.value) {
-      this.editorValue = value;
+      this.rawValue = value;
     }
   }
 
@@ -97,14 +97,15 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
 
   onDataChange() {
     this.editor.model.document.on('change:data', () => {
-      this.handleChange(this.editorValue);
+      this.handleChange(this.rawValue);
     });
   }
 
-  handleChange = (value) => {
+  handleChange = (value: string) => {
     const { onChange } = this.props;
-    this.setState({ value });
-    onChange?.({ target: { value } });
+    const target = { value };
+    this.setState(target);
+    onChange?.({ target });
   };
 
   onImageUpload() {
@@ -112,11 +113,6 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     const plugins = this.editor.plugins;
     const fileRepo = plugins.get('FileRepository');
     fileRepo.createUploadAdapter = (loader) => new imageUploadAdapter(loader, adapterOptions);
-  }
-
-  attacheEvents() {
-    this.onDataChange();
-    this.onImageUpload();
   }
 
   render() {
