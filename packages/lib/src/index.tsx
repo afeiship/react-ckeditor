@@ -112,8 +112,15 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
   }
 
   render() {
-    const { className, value, onChange, editorOptions, adapterOptions, imageUploadAdapter, ...props } =
-      this.props;
+    const {
+      className,
+      value,
+      onChange,
+      editorOptions,
+      adapterOptions,
+      imageUploadAdapter,
+      ...props
+    } = this.props;
 
     return (
       <div
@@ -125,3 +132,7 @@ export default class ReactCkeditor extends Component<ReactCkeditorProps, ReactCk
     );
   }
 }
+
+export const ReactCkeditorFc = React.forwardRef((props: ReactCkeditorProps, ref: any) => {
+  return <ReactCkeditor {...props} ref={ref} />;
+});
